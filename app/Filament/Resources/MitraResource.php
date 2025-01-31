@@ -2,27 +2,27 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\MitraResource\Pages;
+use App\Filament\Resources\MitraResource\RelationManagers;
+use App\Models\Mitra;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class UserResource extends Resource
+class MitraResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Mitra::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
     protected static ?string $navigationGroup = 'People';
-    protected static ?string $navigationLabel = 'Users';
-    protected static ?int $navigationSort = 7;
+    protected static ?string $navigationLabel = 'Mitra';
+
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
@@ -35,19 +35,19 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                // Forms\Components\DateTimePicker::make('email_verified_at'),
+                Forms\Components\TextInput::make('toko')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('no_hp')
                     ->maxLength(255),
-                Forms\Components\DatePicker::make('tanggal_lahir'),
-                Forms\Components\TextInput::make('jenis_kelamin'),
-                FileUpload::make('profile')
+                FileUpload::make('logo')
                     ->image()
                     ->downloadable()
-                    ->directory("user_images"),
+                    ->directory('logo_mitra'),
             ]);
     }
 
@@ -59,16 +59,11 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                // Tables\Columns\TextColumn::make('email_verified_at')
-                //     ->dateTime()
-                //     ->sortable(),
+                Tables\Columns\TextColumn::make('toko')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('no_hp')
                     ->searchable(),
-                ImageColumn::make('profile'),
-                Tables\Columns\TextColumn::make('tanggal_lahir')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('jenis_kelamin'),
+                Tables\Columns\ImageColumn::make('logo'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -84,6 +79,7 @@ class UserResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -102,10 +98,10 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'view' => Pages\ViewUser::route('/{record}'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListMitras::route('/'),
+            'create' => Pages\CreateMitra::route('/create'),
+            'view' => Pages\ViewMitra::route('/{record}'),
+            'edit' => Pages\EditMitra::route('/{record}/edit'),
         ];
     }
 }
