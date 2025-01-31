@@ -3,25 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResoource;
-use App\Models\User;
+use App\Http\Resources\CatalogResource;
+use App\Models\Catalog;
 use Illuminate\Http\Request;
 
-class UserApi extends Controller
+class CatalogApi extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::all();
-        return [
-            "status" => "success",
-            "message" => "Get All Data User has been successfully",
-            "payload" => [
-                "data" =>UserResoource::collection($users)
-            ]
-        ];
+        $catalogs = Catalog::with(['products'])->get();
+        return CatalogResource::collection($catalogs);
     }
 
     /**

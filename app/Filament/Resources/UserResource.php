@@ -46,6 +46,7 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('jenis_kelamin'),
                 FileUpload::make('profile')
                     ->image()
+                    ->maxSize(5128)
                     ->downloadable()
                     ->directory("user_images"),
             ]);

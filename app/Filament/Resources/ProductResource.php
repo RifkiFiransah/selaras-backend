@@ -25,12 +25,16 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('mitra_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('catalog_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('mitra_id')
+                    ->relationship('mitra', 'name')
+                    ->preload()
+                    ->searchable()
+                    ->required(),
+                Forms\Components\Select::make('catalog_id')
+                    ->relationship('catalog', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -39,12 +43,15 @@ class ProductResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('deskripsi')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('gambar')
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('stock')
                     ->numeric(),
                 Forms\Components\TextInput::make('harga')
                     ->numeric(),
+                Forms\Components\FileUpload::make('gambar')
+                    ->image()
+                    ->downloadable()
+                    ->maxSize(5128)
+                    ->directory('product_images'),
             ]);
     }
 

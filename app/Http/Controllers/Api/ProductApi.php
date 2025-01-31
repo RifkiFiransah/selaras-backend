@@ -3,25 +3,19 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResoource;
-use App\Models\User;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class UserApi extends Controller
+class ProductApi extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::all();
-        return [
-            "status" => "success",
-            "message" => "Get All Data User has been successfully",
-            "payload" => [
-                "data" =>UserResoource::collection($users)
-            ]
-        ];
+        $products = Product::with(['catalog', 'mitra'])->get();
+        return ProductResource::collection($products);
     }
 
     /**
