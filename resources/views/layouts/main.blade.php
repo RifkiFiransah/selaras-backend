@@ -4,9 +4,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/favicon.png') }}" />
+  <title>Selaras | {{ (!empty($title)) ? $title : '' }}</title>
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/logos/Brand-Selaras.png') }}" />
   <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
+  <style>
+    .active {
+      border-radius: 20%;
+      background-color: #000 !important;
+    }
+
+    .sidebar-nav ul .sidebar-item.selected>.sidebar-link, .sidebar-nav ul .sidebar-item.selected>.sidebar-link.active, .sidebar-nav ul .sidebar-item>.sidebar-link.active {
+    background-color: #000 !important;
+    color: #fff;
+}
+
+    .bg-primary{
+      background-color: #000 !important;
+    }
+    
+    .active:active, .active:focus, .active:visited {
+      border-radius: 20%;
+      background-color: #000 !important;
+    }
+
+    .btn-primary {
+      background-color: #000 !important;
+      border-color: #000 !important;
+    }
+    
+    .btn-primary {
+      background-color: #000 !important;
+      border-color: #000 !important;
+    }
+  </style>
 </head>
 
 <body>

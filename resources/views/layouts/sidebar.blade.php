@@ -3,8 +3,8 @@
   <!-- Sidebar scroll-->
   <div>
     <div class="brand-logo d-flex align-items-center justify-content-between">
-      <a href="./index.html" class="text-nowrap logo-img">
-        <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+      <a href="./index.html" class="mt-4 text-nowrap logo-img">
+        <img src="{{ asset('assets/images/logos/Selaras (1).png') }}" width="150" alt="" />
       </a>
       <div class="cursor-pointer close-btn d-xl-none d-block sidebartoggler" id="sidebarCollapse">
         <i class="ti ti-x fs-8"></i>
@@ -18,7 +18,7 @@
           <span class="hide-menu">Home</span>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="./index.html" aria-expanded="false">
+          <a class="sidebar-link {{ request()->routeIs('mitra.dashboard') ? 'active' : '' }}" href="{{ route('mitra.dashboard') }}" aria-expanded="false">
             <span>
               <i class="ti ti-layout-dashboard"></i>
             </span>
@@ -29,8 +29,8 @@
           <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
           <span class="hide-menu">Management</span>
         </li>
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+        <li class="sidebar-item {{ request()->routeIs('products_mitra.index') ? 'active' : '' }}">
+          <a class="sidebar-link" href="{{ route('products_mitra.index') }}" aria-expanded="false">
             <span>
               <i class="ti ti-article"></i>
             </span>
@@ -77,8 +77,8 @@
       <div class="mt-5 rounded unlimited-access hide-menu bg-light-primary position-relative mb-7">
         <div class="d-flex">
           <div class="unlimited-access-title me-3">
-            <h6 class="mb-6 fw-semibold fs-4 text-dark w-85">Upgrade to pro</h6>
-            <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Buy Pro</a>
+            <h6 class="mb-6 fw-semibold fs-4 text-dark w-85">Upgrade to Mitra Premium</h6>
+            <a href="https://adminmart.com/product/modernize-bootstrap-5-admin-template/" target="_blank" class="btn btn-primary fs-2 fw-semibold lh-sm">Get Sponsorship</a>
           </div>
           <div class="unlimited-access-img">
             <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
